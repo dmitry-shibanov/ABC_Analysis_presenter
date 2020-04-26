@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Marketingovoe_agentstvoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="ID_factory" />
+    </Key>
+    <Property Name="ID_factory" Type="Int32" Nullable="false" />
+    <Property Name="ID_kategory" Type="Int32" />
+    <Property Name="ID_parametry" Type="Int32" />
+    <Property Name="Naimenovanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Kategory" Relationship="Self.FK_Factory_Kategory" FromRole="Factory" ToRole="Kategory" />
+    <NavigationProperty Name="Parametry" Relationship="Self.FK_Factory_Parametry" FromRole="Factory" ToRole="Parametry" />
+  </EntityType>
+  <EntityType Name="Kategory">
+    <Key>
+      <PropertyRef Name="ID_kategory" />
+    </Key>
+    <Property Name="ID_kategory" Type="Int32" Nullable="false" />
+    <Property Name="Naimenovanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Factories" Relationship="Self.FK_Factory_Kategory" FromRole="Kategory" ToRole="Factory" />
+    <NavigationProperty Name="Uslugies" Relationship="Self.FK_Uslugy_Kategory" FromRole="Kategory" ToRole="Uslugy" />
+  </EntityType>
+  <EntityType Name="Napravlenie">
+    <Key>
+      <PropertyRef Name="ID_napravlenia" />
+    </Key>
+    <Property Name="ID_napravlenia" Type="Int32" Nullable="false" />
+    <Property Name="Naimenovanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Opros" Relationship="Self.FK_Opros_Napravlenie" FromRole="Napravlenie" ToRole="Opros" />
+  </EntityType>
+  <EntityType Name="Opro">
+    <Key>
+      <PropertyRef Name="ID_opros" />
+    </Key>
+    <Property Name="ID_opros" Type="Int32" Nullable="false" />
+    <Property Name="Otcsenka" Type="Int32" Nullable="false" />
+    <Property Name="Nomer_tura" Type="Int32" Nullable="false" />
+    <Property Name="Napravlenie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_sotrudnika" Type="Int32" Nullable="false" />
+    <Property Name="ID_napravlenia" Type="Int32" Nullable="false" />
+    <Property Name="ID_rezultat_oprosa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Napravlenie1" Relationship="Self.FK_Opros_Napravlenie" FromRole="Opros" ToRole="Napravlenie" />
+    <NavigationProperty Name="Rezultat_oprosa" Relationship="Self.FK_Opros_Rezultat_oprosa" FromRole="Opros" ToRole="Rezultat_oprosa" />
+    <NavigationProperty Name="Sotrudniki" Relationship="Self.FK_Opros_Sotrudniki" FromRole="Opros" ToRole="Sotrudniki" />
+  </EntityType>
+  <EntityType Name="Parametry">
+    <Key>
+      <PropertyRef Name="ID_parametry" />
+    </Key>
+    <Property Name="ID_parametry" Type="Int32" Nullable="false" />
+    <Property Name="IF_factory" Type="Int32" />
+    <Property Name="Naimenovanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Factories" Relationship="Self.FK_Factory_Parametry" FromRole="Parametry" ToRole="Factory" />
+  </EntityType>
+  <EntityType Name="Rezultat_oprosa">
+    <Key>
+      <PropertyRef Name="ID_rezultat_oprosa" />
+    </Key>
+    <Property Name="ID_rezultat_oprosa" Type="Int32" Nullable="false" />
+    <Property Name="Kvantil" Type="Int32" Nullable="false" />
+    <Property Name="Mediana" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Opros" Relationship="Self.FK_Opros_Rezultat_oprosa" FromRole="Rezultat_oprosa" ToRole="Opros" />
+  </EntityType>
+  <EntityType Name="Sotrudniki">
+    <Key>
+      <PropertyRef Name="ID_sotrudniki" />
+    </Key>
+    <Property Name="ID_sotrudniki" Type="Int32" Nullable="false" />
+    <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dolzhnost" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Opros" Relationship="Self.FK_Opros_Sotrudniki" FromRole="Sotrudniki" ToRole="Opros" />
+  </EntityType>
+  <EntityType Name="Uslugy">
+    <Key>
+      <PropertyRef Name="ID_kategory" />
+      <PropertyRef Name="Prise" />
+      <PropertyRef Name="Naimenovanie" />
+    </Key>
+    <Property Name="ID_kategory" Type="Int32" Nullable="false" />
+    <Property Name="Prise" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ID_uslugy" Type="Int32" />
+    <Property Name="Naimenovanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Kategory" Relationship="Self.FK_Uslugy_Kategory" FromRole="Uslugy" ToRole="Kategory" />
+  </EntityType>
+  <Association Name="FK_Factory_Kategory">
+    <End Role="Kategory" Type="Self.Kategory" Multiplicity="0..1" />
+    <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategory">
+        <PropertyRef Name="ID_kategory" />
+      </Principal>
+      <Dependent Role="Factory">
+        <PropertyRef Name="ID_kategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Factory_Parametry">
+    <End Role="Parametry" Type="Self.Parametry" Multiplicity="0..1" />
+    <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parametry">
+        <PropertyRef Name="ID_parametry" />
+      </Principal>
+      <Dependent Role="Factory">
+        <PropertyRef Name="ID_parametry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugy_Kategory">
+    <End Role="Kategory" Type="Self.Kategory" Multiplicity="1" />
+    <End Role="Uslugy" Type="Self.Uslugy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategory">
+        <PropertyRef Name="ID_kategory" />
+      </Principal>
+      <Dependent Role="Uslugy">
+        <PropertyRef Name="ID_kategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Napravlenie">
+    <End Role="Napravlenie" Type="Self.Napravlenie" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Napravlenie">
+        <PropertyRef Name="ID_napravlenia" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_napravlenia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Rezultat_oprosa">
+    <End Role="Rezultat_oprosa" Type="Self.Rezultat_oprosa" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezultat_oprosa">
+        <PropertyRef Name="ID_rezultat_oprosa" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_rezultat_oprosa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Sotrudniki">
+    <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sotrudniki">
+        <PropertyRef Name="ID_sotrudniki" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_sotrudnika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Marketingovoe_agentstvoEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Factories" EntityType="Self.Factory" />
+    <EntitySet Name="Kategories" EntityType="Self.Kategory" />
+    <EntitySet Name="Napravlenies" EntityType="Self.Napravlenie" />
+    <EntitySet Name="Opros" EntityType="Self.Opro" />
+    <EntitySet Name="Parametries" EntityType="Self.Parametry" />
+    <EntitySet Name="Rezultat_oprosa" EntityType="Self.Rezultat_oprosa" />
+    <EntitySet Name="Sotrudnikis" EntityType="Self.Sotrudniki" />
+    <EntitySet Name="Uslugies" EntityType="Self.Uslugy" />
+    <AssociationSet Name="FK_Factory_Kategory" Association="Self.FK_Factory_Kategory">
+      <End Role="Kategory" EntitySet="Kategories" />
+      <End Role="Factory" EntitySet="Factories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factory_Parametry" Association="Self.FK_Factory_Parametry">
+      <End Role="Parametry" EntitySet="Parametries" />
+      <End Role="Factory" EntitySet="Factories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugy_Kategory" Association="Self.FK_Uslugy_Kategory">
+      <End Role="Kategory" EntitySet="Kategories" />
+      <End Role="Uslugy" EntitySet="Uslugies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Napravlenie" Association="Self.FK_Opros_Napravlenie">
+      <End Role="Napravlenie" EntitySet="Napravlenies" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Rezultat_oprosa" Association="Self.FK_Opros_Rezultat_oprosa">
+      <End Role="Rezultat_oprosa" EntitySet="Rezultat_oprosa" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Sotrudniki" Association="Self.FK_Opros_Sotrudniki">
+      <End Role="Sotrudniki" EntitySet="Sotrudnikis" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

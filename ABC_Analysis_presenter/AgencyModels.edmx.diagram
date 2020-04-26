@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f3d73c2022f4f80a3cbf4db46f4aeb3" Name="Diagram1">
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Factory" Width="1.5" PointX="5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Kategory" Width="1.5" PointX="2.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Napravlenie" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Opro" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Parametry" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Rezultat_oprosa" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Sotrudniki" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Marketingovoe_agentstvoModel.Uslugy" Width="1.5" PointX="5" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Factory_Kategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Factory_Parametry" ManuallyRouted="false" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Uslugy_Kategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Opros_Napravlenie" ManuallyRouted="false" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Opros_Rezultat_oprosa" ManuallyRouted="false" />
+        <AssociationConnector Association="Marketingovoe_agentstvoModel.FK_Opros_Sotrudniki" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

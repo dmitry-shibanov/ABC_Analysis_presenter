@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Marketingovoe_agentstvoModelContainer" CdmEntityContainer="Marketingovoe_agentstvoEntities1">
+    <EntitySetMapping Name="Factories">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Factory">
+        <MappingFragment StoreEntitySet="Factory">
+          <ScalarProperty Name="ID_factory" ColumnName="ID_factory" />
+          <ScalarProperty Name="ID_kategory" ColumnName="ID_kategory" />
+          <ScalarProperty Name="ID_parametry" ColumnName="ID_parametry" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategories">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Kategory">
+        <MappingFragment StoreEntitySet="Kategory">
+          <ScalarProperty Name="ID_kategory" ColumnName="ID_kategory" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Napravlenies">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Napravlenie">
+        <MappingFragment StoreEntitySet="Napravlenie">
+          <ScalarProperty Name="ID_napravlenia" ColumnName="ID_napravlenia" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Opros">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Opro">
+        <MappingFragment StoreEntitySet="Opros">
+          <ScalarProperty Name="ID_opros" ColumnName="ID_opros" />
+          <ScalarProperty Name="Otcsenka" ColumnName="Otcsenka" />
+          <ScalarProperty Name="Nomer_tura" ColumnName="Nomer_tura" />
+          <ScalarProperty Name="Napravlenie" ColumnName="Napravlenie" />
+          <ScalarProperty Name="ID_sotrudnika" ColumnName="ID_sotrudnika" />
+          <ScalarProperty Name="ID_napravlenia" ColumnName="ID_napravlenia" />
+          <ScalarProperty Name="ID_rezultat_oprosa" ColumnName="ID_rezultat_oprosa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parametries">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Parametry">
+        <MappingFragment StoreEntitySet="Parametry">
+          <ScalarProperty Name="ID_parametry" ColumnName="ID_parametry" />
+          <ScalarProperty Name="IF_factory" ColumnName="IF_factory" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezultat_oprosa">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Rezultat_oprosa">
+        <MappingFragment StoreEntitySet="Rezultat_oprosa">
+          <ScalarProperty Name="ID_rezultat_oprosa" ColumnName="ID_rezultat_oprosa" />
+          <ScalarProperty Name="Kvantil" ColumnName="Kvantil" />
+          <ScalarProperty Name="Mediana" ColumnName="Mediana" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sotrudnikis">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Sotrudniki">
+        <MappingFragment StoreEntitySet="Sotrudniki">
+          <ScalarProperty Name="ID_sotrudniki" ColumnName="ID_sotrudniki" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Dolzhnost" ColumnName="Dolzhnost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uslugies">
+      <EntityTypeMapping TypeName="Marketingovoe_agentstvoModel.Uslugy">
+        <MappingFragment StoreEntitySet="Uslugy">
+          <ScalarProperty Name="ID_kategory" ColumnName="ID_kategory" />
+          <ScalarProperty Name="Prise" ColumnName="Prise" />
+          <ScalarProperty Name="ID_uslugy" ColumnName="ID_uslugy" />
+          <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

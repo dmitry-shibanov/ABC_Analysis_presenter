@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Marketingovoe_agentstvoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="ID_factory" />
+    </Key>
+    <Property Name="ID_factory" Type="int" Nullable="false" />
+    <Property Name="ID_kategory" Type="int" />
+    <Property Name="ID_parametry" Type="int" />
+    <Property Name="Naimenovanie" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategory">
+    <Key>
+      <PropertyRef Name="ID_kategory" />
+    </Key>
+    <Property Name="ID_kategory" Type="int" Nullable="false" />
+    <Property Name="Naimenovanie" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Napravlenie">
+    <Key>
+      <PropertyRef Name="ID_napravlenia" />
+    </Key>
+    <Property Name="ID_napravlenia" Type="int" Nullable="false" />
+    <Property Name="Naimenovanie" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Opros">
+    <Key>
+      <PropertyRef Name="ID_opros" />
+    </Key>
+    <Property Name="ID_opros" Type="int" Nullable="false" />
+    <Property Name="Otcsenka" Type="int" Nullable="false" />
+    <Property Name="Nomer_tura" Type="int" Nullable="false" />
+    <Property Name="Napravlenie" Type="text" Nullable="false" />
+    <Property Name="ID_sotrudnika" Type="int" Nullable="false" />
+    <Property Name="ID_napravlenia" Type="int" Nullable="false" />
+    <Property Name="ID_rezultat_oprosa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Parametry">
+    <Key>
+      <PropertyRef Name="ID_parametry" />
+    </Key>
+    <Property Name="ID_parametry" Type="int" Nullable="false" />
+    <Property Name="IF_factory" Type="int" />
+    <Property Name="Naimenovanie" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rezultat_oprosa">
+    <Key>
+      <PropertyRef Name="ID_rezultat_oprosa" />
+    </Key>
+    <Property Name="ID_rezultat_oprosa" Type="int" Nullable="false" />
+    <Property Name="Kvantil" Type="int" Nullable="false" />
+    <Property Name="Mediana" Type="int" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sotrudniki">
+    <Key>
+      <PropertyRef Name="ID_sotrudniki" />
+    </Key>
+    <Property Name="ID_sotrudniki" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="text" Nullable="false" />
+    <Property Name="Dolzhnost" Type="text" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Marketingovoe_agentstvo.dbo.Uslugy" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Uslugy">
+    <Key>
+      <PropertyRef Name="ID_kategory" />
+      <PropertyRef Name="Prise" />
+      <PropertyRef Name="Naimenovanie" />
+    </Key>
+    <Property Name="ID_kategory" Type="int" Nullable="false" />
+    <Property Name="Prise" Type="money" Nullable="false" />
+    <Property Name="ID_uslugy" Type="int" />
+    <Property Name="Naimenovanie" Type="text" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Factory_Kategory">
+    <End Role="Kategory" Type="Self.Kategory" Multiplicity="0..1" />
+    <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategory">
+        <PropertyRef Name="ID_kategory" />
+      </Principal>
+      <Dependent Role="Factory">
+        <PropertyRef Name="ID_kategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Factory_Parametry">
+    <End Role="Parametry" Type="Self.Parametry" Multiplicity="0..1" />
+    <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parametry">
+        <PropertyRef Name="ID_parametry" />
+      </Principal>
+      <Dependent Role="Factory">
+        <PropertyRef Name="ID_parametry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Napravlenie">
+    <End Role="Napravlenie" Type="Self.Napravlenie" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Napravlenie">
+        <PropertyRef Name="ID_napravlenia" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_napravlenia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Rezultat_oprosa">
+    <End Role="Rezultat_oprosa" Type="Self.Rezultat_oprosa" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezultat_oprosa">
+        <PropertyRef Name="ID_rezultat_oprosa" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_rezultat_oprosa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Opros_Sotrudniki">
+    <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="1" />
+    <End Role="Opros" Type="Self.Opros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sotrudniki">
+        <PropertyRef Name="ID_sotrudniki" />
+      </Principal>
+      <Dependent Role="Opros">
+        <PropertyRef Name="ID_sotrudnika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugy_Kategory">
+    <End Role="Kategory" Type="Self.Kategory" Multiplicity="1" />
+    <End Role="Uslugy" Type="Self.Uslugy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategory">
+        <PropertyRef Name="ID_kategory" />
+      </Principal>
+      <Dependent Role="Uslugy">
+        <PropertyRef Name="ID_kategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Marketingovoe_agentstvoModelContainer">
+    <EntitySet Name="Factory" EntityType="Self.Factory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategory" EntityType="Self.Kategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Napravlenie" EntityType="Self.Napravlenie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Opros" EntityType="Self.Opros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parametry" EntityType="Self.Parametry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rezultat_oprosa" EntityType="Self.Rezultat_oprosa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uslugy" EntityType="Self.Uslugy" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Uslugy].[ID_kategory] AS [ID_kategory], 
+    [Uslugy].[Prise] AS [Prise], 
+    [Uslugy].[ID_uslugy] AS [ID_uslugy], 
+    [Uslugy].[Naimenovanie] AS [Naimenovanie]
+    FROM [dbo].[Uslugy] AS [Uslugy]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Factory_Kategory" Association="Self.FK_Factory_Kategory">
+      <End Role="Kategory" EntitySet="Kategory" />
+      <End Role="Factory" EntitySet="Factory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factory_Parametry" Association="Self.FK_Factory_Parametry">
+      <End Role="Parametry" EntitySet="Parametry" />
+      <End Role="Factory" EntitySet="Factory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Napravlenie" Association="Self.FK_Opros_Napravlenie">
+      <End Role="Napravlenie" EntitySet="Napravlenie" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Rezultat_oprosa" Association="Self.FK_Opros_Rezultat_oprosa">
+      <End Role="Rezultat_oprosa" EntitySet="Rezultat_oprosa" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Opros_Sotrudniki" Association="Self.FK_Opros_Sotrudniki">
+      <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+      <End Role="Opros" EntitySet="Opros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugy_Kategory" Association="Self.FK_Uslugy_Kategory">
+      <End Role="Kategory" EntitySet="Kategory" />
+      <End Role="Uslugy" EntitySet="Uslugy" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
