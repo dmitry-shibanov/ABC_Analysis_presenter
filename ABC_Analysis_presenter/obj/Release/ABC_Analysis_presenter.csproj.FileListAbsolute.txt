@@ -165,3 +165,4 @@ C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\obj\Release\ABC_Analysis_presenter.csproj.CopyComplete
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\obj\Release\ABC_Analysis_presenter.exe
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\obj\Release\ABC_Analysis_presenter.pdb
+C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\obj\Release\ABC_Analysis_presenter.csprojAssemblyReference.cache
