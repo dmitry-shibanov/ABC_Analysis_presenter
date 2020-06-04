@@ -20,7 +20,7 @@ namespace ABC_Analysis_presenter.forms
         {
             InitializeComponent();
             // initial hide buttons
-            signButton.Hide();
+            signoutButton.Hide();
             iconButtonGraphs.Hide();
             iconButtonAction.Hide();
             iconButtonChooseVector.Hide();
@@ -44,6 +44,9 @@ namespace ABC_Analysis_presenter.forms
                 iconButtonGraphs.Show();
                 iconButtonServices.Show();
                 iconButtonChat.Show();
+                titleChild.Text = "Направления";
+                Form eventsForm = new ChooseEvent();
+                openChildForm(eventsForm);
             }
             else
             {
@@ -52,17 +55,9 @@ namespace ABC_Analysis_presenter.forms
                 iconButtonChooseVector.Hide();
                 iconButtonGraphs.Hide();
             }
-            /*
-            if (listChats.InvokeRequired)
-            {
-                UpdateList list = new UpdateList(UpdateListView);
-                this.Invoke(list, new object[] { str });
-            }
-            else
-            {
-                listChats.Items.Add(str);
-            }
-            */
+
+            signoutButton.Show();
+            iconButtonMain.Hide();
         }
 
         private void openChildForm(Form childForm)

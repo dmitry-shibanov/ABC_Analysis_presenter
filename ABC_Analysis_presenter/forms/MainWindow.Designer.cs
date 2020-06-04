@@ -33,7 +33,6 @@
             this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.earn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.exitBtn = new System.Windows.Forms.Button();
             this.calcBtn = new System.Windows.Forms.Button();
             this.btnServiceChose = new FontAwesome.Sharp.IconButton();
             this.btnChangeRelevance = new FontAwesome.Sharp.IconButton();
@@ -87,16 +86,6 @@
             this.earn.Name = "earn";
             this.earn.ReadOnly = true;
             this.earn.Width = 125;
-            // 
-            // exitBtn
-            // 
-            this.exitBtn.Location = new System.Drawing.Point(13, 372);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(260, 66);
-            this.exitBtn.TabIndex = 1;
-            this.exitBtn.Text = "Выход";
-            this.exitBtn.UseVisualStyleBackColor = true;
-            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // calcBtn
             // 
@@ -163,7 +152,6 @@
             this.Controls.Add(this.btnChangeRelevance);
             this.Controls.Add(this.btnServiceChose);
             this.Controls.Add(this.calcBtn);
-            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.dataGrid);
             this.Name = "MainWindow";
             this.Text = "Окно данных";
@@ -177,7 +165,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn count;
         private System.Windows.Forms.DataGridViewTextBoxColumn cost;
         private System.Windows.Forms.DataGridViewTextBoxColumn earn;
-        private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Button calcBtn;
         public System.Windows.Forms.DataGridView dataGrid;
         private FontAwesome.Sharp.IconButton btnServiceChose;

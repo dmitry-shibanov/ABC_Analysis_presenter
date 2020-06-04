@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.iconButtonChat = new FontAwesome.Sharp.IconButton();
             this.iconButtonChooseVector = new FontAwesome.Sharp.IconButton();
             this.iconButtonAction = new FontAwesome.Sharp.IconButton();
             this.iconButtonServices = new FontAwesome.Sharp.IconButton();
             this.iconButtonGraphs = new FontAwesome.Sharp.IconButton();
-            this.signButton = new FontAwesome.Sharp.IconButton();
+            this.signoutButton = new FontAwesome.Sharp.IconButton();
             this.iconButtonMain = new FontAwesome.Sharp.IconButton();
             this.panelHead = new System.Windows.Forms.Panel();
-            this.panelChildForm = new System.Windows.Forms.Panel();
             this.titleChild = new System.Windows.Forms.Label();
-            this.iconButtonChat = new FontAwesome.Sharp.IconButton();
+            this.panelChildForm = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelHead.SuspendLayout();
             this.SuspendLayout();
@@ -52,13 +52,32 @@
             this.panelMenu.Controls.Add(this.iconButtonAction);
             this.panelMenu.Controls.Add(this.iconButtonServices);
             this.panelMenu.Controls.Add(this.iconButtonGraphs);
-            this.panelMenu.Controls.Add(this.signButton);
+            this.panelMenu.Controls.Add(this.signoutButton);
             this.panelMenu.Controls.Add(this.iconButtonMain);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(250, 779);
             this.panelMenu.TabIndex = 0;
+            // 
+            // iconButtonChat
+            // 
+            this.iconButtonChat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButtonChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButtonChat.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconButtonChat.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.iconButtonChat.IconChar = FontAwesome.Sharp.IconChar.EnvelopeSquare;
+            this.iconButtonChat.IconColor = System.Drawing.Color.White;
+            this.iconButtonChat.IconSize = 32;
+            this.iconButtonChat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButtonChat.Location = new System.Drawing.Point(0, 250);
+            this.iconButtonChat.Name = "iconButtonChat";
+            this.iconButtonChat.Rotation = 0D;
+            this.iconButtonChat.Size = new System.Drawing.Size(246, 50);
+            this.iconButtonChat.TabIndex = 5;
+            this.iconButtonChat.Text = "Чат";
+            this.iconButtonChat.UseVisualStyleBackColor = true;
+            this.iconButtonChat.Click += new System.EventHandler(this.iconButtonChat_Click);
             // 
             // iconButtonChooseVector
             // 
@@ -136,23 +155,23 @@
             this.iconButtonGraphs.UseVisualStyleBackColor = true;
             this.iconButtonGraphs.Click += new System.EventHandler(this.iconButtonGraphs_Click);
             // 
-            // signButton
+            // signoutButton
             // 
-            this.signButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.signButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signButton.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.signButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.signButton.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.signButton.IconColor = System.Drawing.Color.Black;
-            this.signButton.IconSize = 16;
-            this.signButton.Location = new System.Drawing.Point(0, 725);
-            this.signButton.Name = "signButton";
-            this.signButton.Rotation = 0D;
-            this.signButton.Size = new System.Drawing.Size(246, 50);
-            this.signButton.TabIndex = 1;
-            this.signButton.Text = "Выход";
-            this.signButton.UseVisualStyleBackColor = true;
-            this.signButton.Click += new System.EventHandler(this.signButton_Click);
+            this.signoutButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.signoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signoutButton.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.signoutButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.signoutButton.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.signoutButton.IconColor = System.Drawing.Color.Black;
+            this.signoutButton.IconSize = 16;
+            this.signoutButton.Location = new System.Drawing.Point(0, 725);
+            this.signoutButton.Name = "signoutButton";
+            this.signoutButton.Rotation = 0D;
+            this.signoutButton.Size = new System.Drawing.Size(246, 50);
+            this.signoutButton.TabIndex = 1;
+            this.signoutButton.Text = "Выход";
+            this.signoutButton.UseVisualStyleBackColor = true;
+            this.signoutButton.Click += new System.EventHandler(this.signButton_Click);
             // 
             // iconButtonMain
             // 
@@ -183,15 +202,6 @@
             this.panelHead.Size = new System.Drawing.Size(1112, 100);
             this.panelHead.TabIndex = 1;
             // 
-            // panelChildForm
-            // 
-            this.panelChildForm.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildForm.Location = new System.Drawing.Point(250, 100);
-            this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1112, 679);
-            this.panelChildForm.TabIndex = 2;
-            // 
             // titleChild
             // 
             this.titleChild.AutoSize = true;
@@ -202,24 +212,14 @@
             this.titleChild.TabIndex = 0;
             this.titleChild.Text = "Вход в систему";
             // 
-            // iconButtonChat
+            // panelChildForm
             // 
-            this.iconButtonChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButtonChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButtonChat.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconButtonChat.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.iconButtonChat.IconChar = FontAwesome.Sharp.IconChar.EnvelopeSquare;
-            this.iconButtonChat.IconColor = System.Drawing.Color.White;
-            this.iconButtonChat.IconSize = 32;
-            this.iconButtonChat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButtonChat.Location = new System.Drawing.Point(0, 250);
-            this.iconButtonChat.Name = "iconButtonChat";
-            this.iconButtonChat.Rotation = 0D;
-            this.iconButtonChat.Size = new System.Drawing.Size(246, 50);
-            this.iconButtonChat.TabIndex = 5;
-            this.iconButtonChat.Text = "Чат";
-            this.iconButtonChat.UseVisualStyleBackColor = true;
-            this.iconButtonChat.Click += new System.EventHandler(this.iconButtonChat_Click);
+            this.panelChildForm.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChildForm.Location = new System.Drawing.Point(250, 100);
+            this.panelChildForm.Name = "panelChildForm";
+            this.panelChildForm.Size = new System.Drawing.Size(1112, 679);
+            this.panelChildForm.TabIndex = 2;
             // 
             // NavigationForm
             // 
@@ -243,7 +243,7 @@
         private System.Windows.Forms.Panel panelMenu;
         private FontAwesome.Sharp.IconButton iconButtonMain;
         private FontAwesome.Sharp.IconButton iconButtonGraphs;
-        private FontAwesome.Sharp.IconButton signButton;
+        private FontAwesome.Sharp.IconButton signoutButton;
         private System.Windows.Forms.Panel panelHead;
         private System.Windows.Forms.Panel panelChildForm;
         private FontAwesome.Sharp.IconButton iconButtonServices;

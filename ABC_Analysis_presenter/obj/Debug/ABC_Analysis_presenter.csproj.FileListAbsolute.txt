@@ -176,3 +176,7 @@ C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\Newtonsoft.Json.xml
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\Guna.UI2.dll
+C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\obj\Debug\ABC_Analysis_presenter.components.MessageControl.resources
+C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\GemBox.Document.dll
+C:\Users\123\Desktop\ABC_Analysis_presenter\ABC_Analysis_presenter\ABC_Analysis_presenter\bin\Debug\GemBox.Document.xml
