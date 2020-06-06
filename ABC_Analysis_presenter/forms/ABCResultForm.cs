@@ -7,18 +7,22 @@ using GemBox.Document.Tables;
 using System.Reflection;
 using System.Data;
 using System.Linq;
+using System.IO;
+using Microsoft.Office.Interop.Word;
 
 namespace ABC_Analysis_presenter
 {
     public partial class ABCResultForm : Form
     {
         private MainWindow mainForm;
-        DataGridView[] tables;
+        Dictionary<string, DataGridView> tables;
+        string htmlDoc = "";
 
         public ABCResultForm(MainWindow mainForm)
         {
             InitializeComponent();
-            tables = new DataGridView[] { axGrid, bxGrid, cxGrid, ayGrid, byGrid, cyGrid, azGrid, bzGrid, czGrid };
+            tables = new Dictionary<string, DataGridView> { { "ax", axGrid }, { "bx", bxGrid }, { "cx", cxGrid }, { "ay", ayGrid },
+                { "by", byGrid }, { "cy", cyGrid }, { "az", azGrid }, { "bz", bzGrid }, { "cz", czGrid } };
             this.mainForm = mainForm;
             List<ServiceModel> list = getListFromGrid();
             if (list.Count > 1)
@@ -28,70 +32,69 @@ namespace ABC_Analysis_presenter
             }
         }
         //DataGridView DGV, Word._Document oDoc, int index, Word.Range wrdRng
-        public void Export_Data_To_Word(DocumentModel document, int index)
+        public void Export_Data_To_Word(DataGridView dataGridView, string key)
         {
-            int rowCount = tables[index].RowCount;
-            int columnCount = tables[index].ColumnCount;
+            htmlDoc += key;
+            htmlDoc += "<br/><br/>";
+            htmlDoc += "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
 
-            var dataTable = new DataTable();
-            for (int c = 0; c < columnCount; c++)
-                dataTable.Columns.Add($"Column {c + 1}");
-            for (int r = 0; r < rowCount; r++)
-                dataTable.Rows.Add(Enumerable.Range(0, columnCount).Select(c => tables[index].Rows[r].Cells[c].Value.ToString()).ToArray());
-
-            Table table = new Table(document, rowCount, columnCount,
-    (int r, int c) => new TableCell(document, new Paragraph(document, dataTable.Rows[r][c].ToString())));
-
-            // Insert first row as Table's header.
-            table.Rows.Insert(0, new TableRow(document, dataTable.Columns.Cast<DataColumn>().Select(
-                dataColumn => new TableCell(document, new Paragraph(document, dataColumn.ColumnName)))));
-
-            table.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
-
-            document.Sections.Add(new Section(document, table));
-            /*
-            if (DGV.Rows.Count != 0)
+            htmlDoc += "<tr>";
+            foreach (DataGridViewColumn column in dataGridView.Columns)
             {
-                Microsoft.Office.Interop.Word.Table tableObj = oDoc.Tables.Add(wrdRng, DGV.Rows.Count+1, 2);
-                tableObj.Range.ParagraphFormat.SpaceAfter = 8;
-                tableObj.Cell(1, 2).Range.Text = "Назавние услуги";
-                int count = oDoc.Tables.Count;
-                tableObj = oDoc.Tables[index];
-                for(int i = 2; i<= DGV.Rows.Count + 1; i++)
-                {
-                    tableObj.Cell(i, 1).Range.Text = (i - 1).ToString();
-                    tableObj.Cell(i, 2).Range.Text = DGV.Rows[i-2].Cells[0].Value.ToString();
-                }
-                tableObj.Range.Borders.Enable = 1;
-                tableObj.Rows[1].Range.Font.Bold = 1;
-                oDoc.Paragraphs.Add(wrdRng);
-
-                //save the file
-                //oDoc.SaveAs2(filename);
-
-
+                htmlDoc += "<th style='background-color: #B8DBFD;border: 1px solid #ccc'>" + column.HeaderText + "</th>";
             }
-            */
+            htmlDoc += "</tr>";
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                htmlDoc += "<tr>";
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    htmlDoc += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
+                }
+                htmlDoc += "</tr>";
+            }
+
+            htmlDoc += "</table>";
+            htmlDoc += "</br></br></br>";
         }
 
         private void GenerateDoc()
         {
+            
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
             var document = new DocumentModel();
+            //document.
 
             int index = 0;
 
-            foreach (DataGridView item in tables)
+            foreach (string key in tables.Keys)
             {
-                object myMissingValue = System.Reflection.Missing.Value;
-                if (item.Rows.Count != 0)
+                DataGridView dataGridView = tables[key];
+                if (dataGridView.Rows.Count != 0)
                 {
+                    Export_Data_To_Word(dataGridView, key);
                 }
-                Export_Data_To_Word(document, index);
                 index++;
             }
-            document.Save("Insert DataTable.docx");
-            this.Close();
+
+            string htmlFilePath = @"C:\Users\123\DataGridView.htm";
+            File.WriteAllText(htmlFilePath, htmlDoc);
+
+            //Convert the HTML File to Word document.
+            _Application word = new Microsoft.Office.Interop.Word.Application();
+            _Document wordDoc = word.Documents.Open(FileName: htmlFilePath, ReadOnly: false);
+            wordDoc.Application.Visible = true;
+            /*
+            wordDoc.SaveAs(FileName: @"E:\Files\DataGridView.doc", FileFormat: WdSaveFormat.wdFormatRTF);
+            ((_Document)wordDoc).Close();
+            ((_Application)word).Quit();
+            
+            //Delete the HTML File.
+            File.Delete(htmlFilePath);
+            //document.Save("Insert DataTable.docx");
+            //this.Close();
+            */
         }
 
         public ABCResultForm()
